@@ -3,7 +3,7 @@ Dynamic Twitter Feeds
 
 Problem Statement
 -----------------
-Write a web application that dynamically feeds 10 Twitter Tweets that contains a particular keywrod (ex- "engineering").
+Write a web application that dynamically feeds 10 Twitter Tweets with relevant keywrod (ex- "engineering").
 
 
 list of technologies
@@ -25,20 +25,21 @@ Features
 How to Run
 -----------
 
-1. Make you have up and running php 5.3+ in order to compatible with PSR4 namespace resolution.
+1. Make sure you have php 5.3+ up and running for PSR4 compatibility.
 
 2. Install and run Memcached server:
-     Based on your operating system and file system download and install Memcached server from the following link:
-        https://memcached.org/
-     For windows operating system, download it from and follow the instruction to run.
-        https://commaster.net/content/installing-memcached-windows
+    Download and install Memcached server from the following link based on your operating system
+    https://memcached.org/
+    
+    Windows user, please get a copy and install it from 
+    https://commaster.net/content/installing-memcached-windows
      
-     In order to flush/clear it use telnet localhost 11211
+    In order to flush/clear it use >telnet localhost 11211
+    Memcached is required to store the tweets. See the class's under cache directory.
 
-3.  Integrating Twitter Rest api to local server:
+3. Integrating Twitter Rest api to local server:
 
-    In order to integrate with Twitter Rest api we need to authenticate first. We need to modify the follwing 
-    parameters from api/config files.
+    For authenticating Twitter Rest api to our site,we need to generate the follwing parameters from api/config files.
 
     // Consumer Key
     define('CONSUMER_KEY', 'xxxx');
@@ -48,17 +49,14 @@ How to Run
     define('ACCESS_TOKEN', 'xxxx');
     define('ACCESS_SECRET', 'xxxx');
 
-    Create a twitter account and create a single user application using oAuth from https://apps.twitter.com/ to generate consumer key , consumer secret , access token and access secret.
+    Create a twitter account if you don't have one in 'single user mode' from https://apps.twitter.com/ to generate consumer key , consumer secret , access token and access secret for oAuth to REst API.
 
-    It will also give us Callback URL http://127.0.0.1/twitter/index.php which enable us to access twitter rest api from local server.
+    *****The Callback URL (http://127.0.0.1/twitter/index.php) needs to be mapped with the localhost application directory during testing.
 
-    *** You must need a directory on web-root called twitter according to callback url setting. In summary,the call back url must align your local web directory.
-
-    From your web browser http://localhost/twitter/ and if everything is okey you should see similar to following:
-
+    See the image directory to get the output after running.
 
 4. Composer Configuration:
-    Twitter recommends any oAuth connection (https://dev.twitter.com/oauth/overview/single-user) to get tweets. in order to have secure connection this application has the following composer configuration up and running. so we don't need to do anything.
+    Our composer.json includes abraham/twitteroauth(ref->https://dev.twitter.com/oauth/overview/single-user) and psr-4 for namespace resolution.
     {
     
     "require": 
