@@ -3,7 +3,7 @@ namespace Twitter\cache;
 /*
  * This is a CacheManager class which instantiate memcache.It stroes and retrieves 'Cachable Object' from memcahced.   
  * 
-*/
+ */
 class CacheManager 
 {
     private $identifier;
@@ -34,21 +34,21 @@ class CacheManager
         return self::$instance;
     }
 
- /**
-  * Stores a CachedObject to memcached
-  * @param  CachedObject  $cacheobject
-  * @return CachedObject $cacheobject 
-  */
+   /**
+    * Stores a CachedObject to memcached
+    * @param  CachedObject  $cacheobject
+    * @return CachedObject $cacheobject 
+    */
     public function putCache($cacheobject)
     {
         $this->memcache_instance->set( $cacheobject->identifier , $cacheobject , 0 ,30);
     }
 
- /**
-  * gets a CachedObject from memcached
-  * @param  String  $identifier
-  * @return CachedObject $cacheobject 
-  */
+   /**
+    * gets a CachedObject from memcached
+    * @param  String  $identifier
+    * @return CachedObject $cacheobject 
+    */
     public function getCache($identifier)
     {
         $cachedobject = $this->memcache_instance->get($identifier);

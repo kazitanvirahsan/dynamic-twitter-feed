@@ -1,5 +1,5 @@
-Dynamic Twitter Feeds for Website  
-=================================
+Dynamic Twitter Feeds
+=====================
 
 Problem Statement
 -----------------
@@ -16,14 +16,14 @@ list of technologies
     oAuth 1.1 ( Using @abraham’s PHP twitteroauth Library)
 
 Features
-------------------
-Seach tweets based on keywords
-Set tweet count
-Convert twitter hashtag, alias, and links into hyperlinks.
-Stores Tweets in temporary cache
+--------
+    Seach tweets based on keywords
+    Set tweet count
+    Convert twitter hashtag, alias, and links into hyperlinks.
+    Stores Tweets in temporary cache
 
 How to Run
-------------------
+-----------
 
 1. Make you have up and running php 5.3+ in order to compatible with PSR4 namespace resolution.
 
@@ -35,7 +35,7 @@ How to Run
      
      In order to flush/clear it use telnet localhost 11211
 
-3. Integrating Twitter Rest api to local server:
+3.  Integrating Twitter Rest api to local server:
 
     In order to integrate with Twitter Rest api we need to authenticate first. We need to modify the follwing 
     parameters from api/config files.
@@ -74,12 +74,13 @@ How to Run
     }
 }
 
-Future Imporvements 
--------------------
+Suggested Imporvements 
+----------------------
 
-1. Cache policy improvement:
-      There is no gurantee that twitter rest api will return result set which may break our application. 
-      In addition, no gurantee can be ensure from memcached server. As a result,we need to use alternative persistent cache like file cache to store our tweets to implement the fail over.
+    There is no gurantee that twitter rest api will return result set (in case of server failure) which may break the website.In addition, no gurantee can be made from memcached server. As a result,alternative persistent cache like file cache to store our tweets for fail over need to be introduced.
 
-2. Cancel the ajax time interval from client side:
-      When the angualrJS controller will be out of scope we need to cancel the interval to stop the ajax call. This cancellation will ensure we do not run asynchronous call to fetch tweets forever.
+    Cancelling ajax call in certain time interval needs to be triggered when angualr controller will be out of scope.Cancellation of this activity ensures that we do not run asynchronous call to fetch tweets forever while on the other page.
+
+    Error and Exception handling need to be implemented and more completed before production.
+
+    For better data display requirements, each twitter feed date strings needs to be well-formed. Client side CSS framework like Bootstrapping or angular-ui can be a good feature as well.
